@@ -92,7 +92,7 @@ function App() {
   }
 
   const selectedProject = projectState.projects.find(project => project.id == projectState.selectedProjectId)
-  let content = <SelectedProject project={selectedProject} tasks={projectState.tasks} onDelete={handleDeleteProject} onAddTask={handleAddTask} onDeleteTask={handleDeleteTask} />;
+  let content = <SelectedProject project={selectedProject} tasks={projectState.tasks.filter(x => x.projectId == projectState.selectedProjectId)} onDelete={handleDeleteProject} onAddTask={handleAddTask} onDeleteTask={handleDeleteTask} />;
 
   if(projectState.selectedProjectId === null) {
     content = <NewProject onAdd={handleAddProject} onCancel={handleCancelAddProject} />
@@ -103,7 +103,7 @@ function App() {
   
   return (
     <main className="h-screen my-8 flex gap-8">
-      <Sidebar onSelectProject={handleSelectProject}  onPressNewProject={handleStartAddProject} projects={projectState.projects} />
+      <Sidebar onSelectProject={handleSelectProject}  onPressNewProject={handleStartAddProject} projects={projectState.projects} selectedProjectId={projectState.selectedProjectId}/>
       {content}
     </main>
   );

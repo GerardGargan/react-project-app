@@ -8,6 +8,10 @@ export default function NewTask({onAdd}) {
     }
 
     function handleClick() {
+        if(enteredTask.trim() === '') {
+            return;
+        }
+
         //reset text input to empty
         setEnteredTask('');
         //forward data to app component
